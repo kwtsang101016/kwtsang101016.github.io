@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vibe Coding Workshop 2026 · CUHK</title>
+  <link rel="stylesheet" href="assets/lecture.css">
+</head>
+<body>
+  <div class="page">
+    <nav class="nav" aria-label="Slide controls">
+      <a class="brand" href="index.html">VIBE 2026</a>
+      <div class="navCenter">
+        <button class="navBtn" id="prevBtn" type="button">←</button>
+        <span class="progress" id="progressLabel">01 / 01</span>
+        <button class="navBtn" id="nextBtn" type="button">→</button>
+        <button class="toolBtn" id="scaleBtn" type="button" title="Text size">Aa</button>
+      </div>
+      <select class="jump" id="jumpSelect" aria-label="Jump to slide"></select>
+    </nav>
+    <div class="track"><i id="trackFill"></i></div>
+
+    <div class="stage" id="stage">
+
+      <!-- 01 Cover -->
+      <section class="scene cover" data-title="Cover">
+        <div class="coverInner">
+          <p class="kicker">CUHK Workshop · 2026</p>
+          <h1 class="coverTitle">Vibe Coding</h1>
+          <p class="lead">Build a simple data-analysis web app with an AI IDE — then publish it on GitHub.</p>
+          <p class="hint">← → to navigate · Aa for lecture-hall text size</p>
+        </div>
+      </section>
+
+      <!-- 02 Speaker -->
+      <section class="scene" data-title="Speaker">
+        <p class="kicker">About the speaker</p>
+        <h1>Ka Wai Tsang (曾家炜)</h1>
+        <p class="lead">Associate Professor (Teaching), School of Data Science, CUHKSZ. Stanford Ph.D.; CUHK alumnus.</p>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Teaching focus</h3>
+            <ul>
+              <li>Statistics, time series, data analysis</li>
+              <li>AI Exploration / prompt-based workflows</li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <h3>Today’s angle</h3>
+            <p>How vibe coding with an AI IDE helps you ship teaching and data tools — not just chat answers.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 Agenda -->
+      <section class="scene" data-title="Agenda">
+        <p class="kicker">2-hour plan</p>
+        <h1>What we will do</h1>
+        <ol class="orderedList">
+          <li>What vibe coding is (Chat vs IDE)</li>
+          <li>GitHub account (if needed)</li>
+          <li>Install / open CodeBuddy (or your own IDE)</li>
+          <li><strong>Task 1:</strong> download financial data with Python</li>
+          <li><strong>Task 2:</strong> one single HTML web app</li>
+          <li>Push to GitHub Pages and get a public link</li>
+        </ol>
+        <div class="callout">Appendices (brief mention only): visit logging with Google Sheets · adding AI APIs later.</div>
+      </section>
+
+      <!-- 04 Learning goals -->
+      <section class="scene" data-title="Learning goals">
+        <p class="kicker">By the end</p>
+        <h1>Your win condition</h1>
+        <div class="grid-3">
+          <div class="card"><h3>1 · Data</h3><p>A CSV of stock prices (e.g. AAPL) with a clean header row.</p></div>
+          <div class="card gold"><h3>2 · App</h3><p>One self-contained <code>index.html</code> for simple analysis.</p></div>
+          <div class="card"><h3>3 · Link</h3><p>A GitHub Pages URL you can open on a phone.</p></div>
+        </div>
+        <div class="tip"><h3>Submit</h3><p>You will submit the <strong>single HTML file</strong> (and optionally the Pages link).</p></div>
+      </section>
+
+      <!-- 05 What is vibe coding -->
+      <section class="scene" data-title="What is vibe coding">
+        <p class="kicker">Section 1</p>
+        <h1>What is vibe coding?</h1>
+        <p class="lead">You describe the goal in natural language. An AI coding agent edits files, runs commands, and iterates with you inside a real project.</p>
+        <ul class="bulletList">
+          <li>Not “ask ChatGPT → copy → paste → hope”</li>
+          <li>The agent can see your folder, create files, and fix errors</li>
+          <li>You stay in charge: accept, reject, refine the prompt</li>
+        </ul>
+      </section>
+
+      <!-- 06 Chat vs IDE -->
+      <section class="scene" data-title="Chat vs IDE">
+        <p class="kicker">Key distinction</p>
+        <h1>Chat mode vs IDE / work mode</h1>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Chat mode (common)</h3>
+            <ul>
+              <li>Conversation in a browser or app</li>
+              <li>You copy code into files yourself</li>
+              <li>Weak project context</li>
+              <li>Easy for Q&amp;A; hard for shipping</li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <h3>IDE / work mode</h3>
+            <ul>
+              <li>Agent works inside your project</li>
+              <li>Creates / edits files directly</li>
+              <li>Can run terminal commands</li>
+              <li>Built for finishing a working app</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout">Today we practice <strong>IDE / work mode</strong>.</div>
+      </section>
+
+      <!-- 07 Why this matters -->
+      <section class="scene" data-title="Why IDE matters">
+        <p class="kicker">Motivation</p>
+        <h1>Why the difference matters</h1>
+        <div class="flow">
+          <div class="flow-step">Idea</div><span class="flow-arrow">→</span>
+          <div class="flow-step">Files on disk</div><span class="flow-arrow">→</span>
+          <div class="flow-step">Run / preview</div><span class="flow-arrow">→</span>
+          <div class="flow-step">Fix errors</div><span class="flow-arrow">→</span>
+          <div class="flow-step">Publish</div>
+        </div>
+        <p class="lead">Chat can help at each step. An IDE agent can <em>do</em> several steps with you in one loop.</p>
+      </section>
+
+      <!-- 08 Demo of teaching tools -->
+      <section class="scene" data-title="Demo: teaching tools">
+        <p class="kicker">Live demo</p>
+        <h1>Examples built with vibe coding</h1>
+        <p class="lead">Teaching sites and classroom tools: GitHub Pages, Render for interaction, and Google Sheets for anonymous usage logs.</p>
+        <div class="badge-row">
+          <span class="badge demo">GitHub Pages</span>
+          <span class="badge demo">Render</span>
+          <span class="badge demo">Google Sheets</span>
+          <span class="badge concept">Built in Cursor</span>
+        </div>
+        <div class="tip"><h3>Takeaway</h3><p>Same skill you will practice today — describe, generate, check, publish.</p></div>
+      </section>
+
+      <!-- 09 IDE comparison -->
+      <section class="scene" data-title="IDE comparison">
+        <p class="kicker">Tools</p>
+        <h1>Popular AI IDEs (quick map)</h1>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Tool</th><th>Notes</th><th>Cost reality</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>CodeBuddy</strong></td><td>Today’s demo IDE (intl. site)</td><td>Free tier with limited credits</td></tr>
+              <tr><td><strong>Cursor</strong></td><td>Strong agent IDE; used for many teaching tools</td><td>Free limited; paid for heavy use</td></tr>
+              <tr><td><strong>Codex</strong></td><td>OpenAI coding agent (CLI / VS Code)</td><td>Tied to ChatGPT plan limits</td></tr>
+              <tr><td><strong>Trae.cn</strong></td><td>ByteDance AI IDE; China-friendly</td><td>Own free / paid tiers</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 10 CodeBuddy is demo only -->
+      <section class="scene" data-title="Any IDE is fine">
+        <p class="kicker">Important</p>
+        <h1>CodeBuddy is for demonstration</h1>
+        <p class="lead">Every idea today also works in Cursor, Codex, Trae, VS Code + agent, and similar tools.</p>
+        <ul class="check-list">
+          <li>Same workflow: prompt → files → check → publish</li>
+          <li>Same deliverable: one HTML file + GitHub Pages link</li>
+          <li>If you already have an IDE, keep using it</li>
+        </ul>
+      </section>
+
+      <!-- 11 GitHub section -->
+      <section class="scene" data-title="GitHub overview">
+        <p class="kicker">Section 2</p>
+        <h1>GitHub for publishing web apps</h1>
+        <div class="grid-2">
+          <div class="card">
+            <h3>GitHub</h3>
+            <p>Online home for your project files (a repository).</p>
+          </div>
+          <div class="card gold">
+            <h3>GitHub Pages</h3>
+            <p>Turns a repo into a public website URL — perfect for a static HTML app.</p>
+          </div>
+        </div>
+        <div class="callout">Today’s app is static HTML. GitHub Pages is enough. (AI chat APIs are a later topic.)</div>
+      </section>
+
+      <!-- 12 Create GitHub account -->
+      <section class="scene" data-title="Create GitHub account">
+        <p class="kicker">Setup</p>
+        <h1>Create a GitHub account</h1>
+        <ol class="orderedList">
+          <li>Open <a href="https://github.com/signup" target="_blank" rel="noopener">https://github.com/signup</a></li>
+          <li>Use a school or personal email you can access now</li>
+          <li>Choose a simple username (this appears in your URL)</li>
+          <li>Verify email if asked</li>
+          <li>Skip extra setup screens for now</li>
+        </ol>
+        <div class="tip"><h3>Your future URL shape</h3>
+          <pre class="code-box">https://YOUR_USERNAME.github.io/REPO_NAME/</pre>
+        </div>
+      </section>
+
+      <!-- 13 GitHub checklist -->
+      <section class="scene" data-title="GitHub ready check">
+        <p class="kicker">Checkpoint</p>
+        <h1>GitHub ready?</h1>
+        <ul class="check-list">
+          <li>I can sign in at github.com</li>
+          <li>I know my username</li>
+          <li>I can create a new repository later (we will do this in Task push)</li>
+        </ul>
+        <div class="callout">If signup is blocked by network, raise your hand — we have a shared fallback plan.</div>
+      </section>
+
+      <!-- 14 Install CodeBuddy -->
+      <section class="scene" data-title="Install CodeBuddy">
+        <p class="kicker">Section 3</p>
+        <h1>Download &amp; install CodeBuddy</h1>
+        <p class="lead">International site for this CUHK workshop:</p>
+        <pre class="code-box">https://www.codebuddy.ai/ide</pre>
+        <ol class="orderedList">
+          <li>Download the installer for your OS</li>
+          <li>Install and open CodeBuddy</li>
+          <li>Sign in (Google / GitHub / email). Pick a region if asked (Singapore is a common choice)</li>
+          <li>Create or open a workshop folder, e.g. <code>vibecoding-workshop</code></li>
+        </ol>
+        <div class="tip"><h3>Already using another IDE?</h3><p>Stay there. Just mirror the same prompts and checks.</p></div>
+      </section>
+
+      <!-- 15 China vs intl note -->
+      <section class="scene" data-title="China vs International">
+        <p class="kicker">Note</p>
+        <h1>China site ≠ International site</h1>
+        <div class="grid-2">
+          <div class="card"><h3>codebuddy.cn</h3><p>Mainland account / WeChat–phone login / RMB plans / different model pool</p></div>
+          <div class="card gold"><h3>codebuddy.ai</h3><p>International login / USD plans / different free quota — <strong>use this today</strong></p></div>
+        </div>
+        <div class="callout">Accounts and credits are not automatically shared across the two sites.</div>
+      </section>
+
+      <!-- 16 Environment check -->
+      <section class="scene" data-title="Environment check">
+        <p class="kicker">Before coding</p>
+        <h1>Check Python &amp; Git readiness</h1>
+        <p class="lead">Ask your IDE agent (sample prompt):</p>
+        <pre class="prompt-box">Please check whether this computer is ready for today's workshop.
+1) Report python --version (need 3.9+ if possible)
+2) Report pip --version
+3) Report git --version
+4) If Python is missing, tell me the simplest install option for my OS
+5) If git is missing, tell me how to install Git for my OS
+Do not change project files yet. Just diagnose and give next steps.</pre>
+      </section>
+
+      <!-- 17 Ready checklist -->
+      <section class="scene" data-title="Tool checklist">
+        <p class="kicker">Checkpoint</p>
+        <h1>Tool checklist</h1>
+        <ul class="check-list">
+          <li>IDE open on a workshop folder</li>
+          <li>Python available in the terminal</li>
+          <li>Git available (or install plan ready)</li>
+          <li>GitHub account signed in (browser)</li>
+        </ul>
+        <div class="callout">Raise your hand when all four are done — or when you are stuck on one item.</div>
+      </section>
+
+      <!-- 18 Task 1 -->
+      <section class="scene" data-title="Task 1 overview">
+        <p class="kicker">Section 4 · Task 1</p>
+        <h1>Download financial data</h1>
+        <p class="lead">Use Python with <strong>yfinance</strong> (or <strong>akshare</strong>) to download AAPL daily prices into a clean CSV.</p>
+        <div class="grid-2">
+          <div class="card"><h3>yfinance</h3><p>Convenient for US tickers such as AAPL.</p></div>
+          <div class="card"><h3>akshare</h3><p>Useful alternative, especially for China-market data later.</p></div>
+        </div>
+        <div class="tip"><h3>Success look</h3><p>First row = column names. Data rows start immediately under the header. No junk title rows.</p></div>
+      </section>
+
+      <!-- 19 Task 1 prompt -->
+      <section class="scene" data-title="Task 1 prompt">
+        <p class="kicker">Sample prompt</p>
+        <h1>Download AAPL data</h1>
+        <pre class="prompt-box">In this folder, create a Python script download_aapl.py that:
+1) Uses yfinance to download AAPL daily OHLCV for the past 2 years
+2) Saves the result as data/aapl.csv
+3) Makes sure the CSV has a normal header row (column names) as the first row
+4) Includes Date as a column (not only as an unnamed index)
+5) Prints the first 5 rows and the column names after saving
+
+If yfinance is not installed, install it in the current environment.
+Then run the script and fix any errors until the CSV exists.</pre>
+      </section>
+
+      <!-- 20 Task 1 validation -->
+      <section class="scene" data-title="Task 1 validate">
+        <p class="kicker">Sample prompt</p>
+        <h1>Validate the CSV format</h1>
+        <pre class="prompt-box">Open data/aapl.csv and verify:
+1) Row 1 is column names only
+2) Row 2 onward contains values aligned under those columns
+3) There is a Date column and at least Close (or Adj Close)
+4) No blank header, no multi-line title block, no JSON dumped into one cell
+
+If anything is wrong, fix the download script and regenerate the CSV.
+Finally show me: column names, number of rows, and the first 3 data rows.</pre>
+        <div class="callout">Do not jump to the web app until this check passes.</div>
+      </section>
+
+      <!-- 21 Task 2 -->
+      <section class="scene" data-title="Task 2 overview">
+        <p class="kicker">Section 5 · Task 2</p>
+        <h1>One HTML file web app</h1>
+        <p class="lead">Build a vanilla web app in a <strong>single</strong> <code>index.html</code> file for simple analysis of the downloaded data.</p>
+        <div class="badge-row">
+          <span class="badge practice">Single file</span>
+          <span class="badge practice">No build step</span>
+          <span class="badge practice">Submit this HTML</span>
+        </div>
+        <ul class="bulletList">
+          <li>Upload / load the CSV in the browser</li>
+          <li>Show basic stats (rows, date range, mean / min / max of Close)</li>
+          <li>Optional: a simple chart</li>
+        </ul>
+      </section>
+
+      <!-- 22 Why single HTML -->
+      <section class="scene" data-title="Why single HTML">
+        <p class="kicker">Design choice</p>
+        <h1>Why a single HTML file?</h1>
+        <div class="grid-3">
+          <div class="card"><h3>Easy to submit</h3><p>One file to collect and grade.</p></div>
+          <div class="card"><h3>Easy to host</h3><p>GitHub Pages loves static files.</p></div>
+          <div class="card"><h3>Easy to debug</h3><p>No React/Vite setup today.</p></div>
+        </div>
+        <div class="callout">You may embed CSS and JavaScript inside the same HTML file. External CDNs for a chart library are OK if needed.</div>
+      </section>
+
+      <!-- 23 Task 2 prompt -->
+      <section class="scene" data-title="Task 2 prompt">
+        <p class="kicker">Sample prompt</p>
+        <h1>Build the web app</h1>
+        <pre class="prompt-box">Create a single file named index.html (all CSS/JS inside this file) that:
+1) Lets the user upload a CSV (default expectation: AAPL OHLCV with Date and Close)
+2) Parses the CSV in the browser
+3) Shows: number of rows, date range, mean/min/max of Close
+4) Draws a simple line chart of Close vs Date
+5) Has clear error messages if the file is missing Date or Close
+6) Works by double-clicking the HTML file or via a local static server
+7) Uses no backend and no API keys
+
+Keep the UI clean and beginner-friendly. After generating the file, tell me how to test it with data/aapl.csv.</pre>
+      </section>
+
+      <!-- 24 Task 2 quality bar -->
+      <section class="scene" data-title="Task 2 quality bar">
+        <p class="kicker">Quality bar</p>
+        <h1>What “done” looks like</h1>
+        <ul class="check-list">
+          <li>Only one HTML file is required for submission</li>
+          <li>Uploading <code>aapl.csv</code> shows numbers that match Python’s quick summary</li>
+          <li>Chart (if included) updates after upload</li>
+          <li>Someone else can open the file without installing Python</li>
+        </ul>
+        <div class="tip"><h3>Optional stretch</h3><p>Add a ticker label, moving average toggle, or a second uploaded series — only after the basic version works.</p></div>
+      </section>
+
+      <!-- 25 Push overview -->
+      <section class="scene" data-title="Publish overview">
+        <p class="kicker">Section 6</p>
+        <h1>Push to GitHub &amp; get a link</h1>
+        <div class="flow">
+          <div class="flow-step">Create repo</div><span class="flow-arrow">→</span>
+          <div class="flow-step">Upload index.html</div><span class="flow-arrow">→</span>
+          <div class="flow-step">Enable Pages</div><span class="flow-arrow">→</span>
+          <div class="flow-step">Open public URL</div>
+        </div>
+        <p class="lead">Your website is just files in a repo + Pages turned on.</p>
+      </section>
+
+      <!-- 26 Create repo -->
+      <section class="scene" data-title="Create repo">
+        <p class="kicker">Steps</p>
+        <h1>Create the repository</h1>
+        <ol class="orderedList">
+          <li>GitHub → <strong>New repository</strong></li>
+          <li>Name example: <code>aapl-webapp</code></li>
+          <li>Public</li>
+          <li>Add a README (optional)</li>
+          <li>Create repository</li>
+        </ol>
+        <div class="callout">Keep the repo name short and URL-friendly (lowercase, hyphens).</div>
+      </section>
+
+      <!-- 27 Push with agent -->
+      <section class="scene" data-title="Push prompt">
+        <p class="kicker">Sample prompt</p>
+        <h1>Ask the IDE to push</h1>
+        <pre class="prompt-box">Help me publish this project to GitHub Pages.
+Assumptions:
+- My GitHub username is YOUR_USERNAME
+- Repo name should be aapl-webapp (create it if needed, or use an existing empty repo)
+- The site entry file is index.html in the project root
+- Do not upload API keys or .env files
+
+Please:
+1) Initialize git if needed
+2) Commit index.html (and data/aapl.csv only if the file is small and I say yes)
+3) Push to GitHub
+4) Tell me exactly where to click to enable GitHub Pages (Deploy from branch, / root)
+5) Give me the expected public URL</pre>
+      </section>
+
+      <!-- 28 Enable Pages -->
+      <section class="scene" data-title="Enable Pages">
+        <p class="kicker">Manual click</p>
+        <h1>Enable GitHub Pages</h1>
+        <ol class="orderedList">
+          <li>Open the repo on GitHub</li>
+          <li><strong>Settings</strong> → <strong>Pages</strong></li>
+          <li>Build and deployment → Source: <strong>Deploy from a branch</strong></li>
+          <li>Branch: <code>main</code> (or <code>master</code>), folder: <code>/ (root)</code></li>
+          <li>Save, wait 1–2 minutes, open the URL</li>
+        </ol>
+        <pre class="code-box">https://YOUR_USERNAME.github.io/aapl-webapp/</pre>
+      </section>
+
+      <!-- 29 Final checklist -->
+      <section class="scene" data-title="Final checklist">
+        <p class="kicker">Workshop finish line</p>
+        <h1>Before you leave</h1>
+        <ul class="check-list">
+          <li><code>data/aapl.csv</code> exists and looks clean</li>
+          <li><code>index.html</code> works locally with an upload</li>
+          <li>Repo is on GitHub</li>
+          <li>Pages URL opens on your phone</li>
+          <li>You know which HTML file to submit</li>
+        </ul>
+      </section>
+
+      <!-- 30 Recap -->
+      <section class="scene" data-title="Recap">
+        <p class="kicker">Recap</p>
+        <h1>What you practiced</h1>
+        <div class="grid-2">
+          <div class="card"><h3>Mindset</h3><p>IDE agent ≠ chat copy-paste. Work in a project until it runs.</p></div>
+          <div class="card"><h3>Skill loop</h3><p>Prompt → check output → refine → publish.</p></div>
+        </div>
+        <div class="callout">Any capable AI IDE can do today’s workflow. CodeBuddy was only the classroom demo.</div>
+      </section>
+
+      <!-- 31 Appendix divider -->
+      <section class="scene cover" data-title="Appendix">
+        <div class="coverInner">
+          <p class="kicker">Optional after class</p>
+          <h1 class="coverTitle">Appendix</h1>
+          <p class="lead">A) Monitor visits with Google Sheets · B) Add AI APIs later</p>
+          <p class="hint">Brief overview only — not required for today’s submission</p>
+        </div>
+      </section>
+
+      <!-- 32 Appendix A overview -->
+      <section class="scene" data-title="Appendix A overview">
+        <p class="kicker">Appendix A</p>
+        <h1>Monitor visits with Google Sheets</h1>
+        <p class="lead">The page sends anonymous events to a Google Apps Script, which appends rows to a Sheet.</p>
+        <div class="grid-3">
+          <div class="card"><h3>1 · Sheet</h3><p>Create a Google Sheet as your log table.</p></div>
+          <div class="card"><h3>2 · Apps Script</h3><p>A tiny <code>doPost</code> web app writes each visit/event.</p></div>
+          <div class="card"><h3>3 · Web app</h3><p>Your HTML/JS posts JSON when a page opens.</p></div>
+        </div>
+      </section>
+
+      <!-- 33 Appendix A privacy -->
+      <section class="scene" data-title="Appendix A privacy">
+        <p class="kicker">Appendix A</p>
+        <h1>What to log (and what not to)</h1>
+        <div class="grid-2">
+          <div class="card gold">
+            <h3>OK (anonymous)</h3>
+            <ul>
+              <li>timestamp</li>
+              <li>session id (random)</li>
+              <li>page / scene name</li>
+              <li>course / project label</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Avoid</h3>
+            <ul>
+              <li>student name / SID</li>
+              <li>emails</li>
+              <li>typed answers with personal data</li>
+              <li>API keys</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout">This is not for surveillance of individuals.</div>
+      </section>
+
+      <!-- 34 Appendix A steps -->
+      <section class="scene" data-title="Appendix A steps">
+        <p class="kicker">Appendix A</p>
+        <h1>Setup sketch</h1>
+        <ol class="orderedList">
+          <li>Create a Google Sheet → Extensions → Apps Script</li>
+          <li>Paste a <code>doPost</code> script that appends JSON fields to a <code>usage_log</code> tab</li>
+          <li>Deploy → Web app → Who has access: Anyone</li>
+          <li>Copy the web app URL into your front-end as the log endpoint</li>
+          <li>On page load, <code>fetch(url, { method: "POST", body: JSON.stringify(event) })</code></li>
+        </ol>
+        <div class="tip"><h3>Ask your IDE</h3>
+          <pre class="prompt-box">Add anonymous visit logging to this static HTML app.
+Post only timestamp, random sessionId, and page title to a Google Apps Script URL placeholder.
+Do not collect names or personal data. Fail silently if the network request fails.</pre>
+        </div>
+      </section>
+
+      <!-- 35 Appendix B overview -->
+      <section class="scene" data-title="Appendix B overview">
+        <p class="kicker">Appendix B</p>
+        <h1>Adding AI features later</h1>
+        <p class="lead">Today’s app needs no AI API. If you later want an in-page assistant, you need a model API — and a safe place to keep the key.</p>
+        <div class="flow">
+          <div class="flow-step">Local free API (CLōD)</div><span class="flow-arrow">→</span>
+          <div class="flow-step">Learn the pattern</div><span class="flow-arrow">→</span>
+          <div class="flow-step">Public site: cloud API + host with server functions</div>
+        </div>
+      </section>
+
+      <!-- 36 Appendix B CLOD -->
+      <section class="scene" data-title="Appendix B CLOD">
+        <p class="kicker">Appendix B</p>
+        <h1>Start local with free CLōD</h1>
+        <ol class="orderedList">
+          <li>Register at <a href="https://app.clod.io" target="_blank" rel="noopener">https://app.clod.io</a></li>
+          <li>Create an API key</li>
+          <li>Store it in <code>.env</code> / <code>.env.local</code> — never in the HTML you publish</li>
+          <li>Call the model from a small local server function</li>
+        </ol>
+        <div class="callout">CLōD is excellent for <strong>local practice</strong>. On public cloud hosts it is often blocked (e.g. Cloudflare challenges), so do not plan on CLōD alone for a public AI demo.</div>
+      </section>
+
+      <!-- 37 Appendix B accuracy -->
+      <section class="scene" data-title="Appendix B hosting truth">
+        <p class="kicker">Appendix B · precise version</p>
+        <h1>GitHub Pages vs AI APIs</h1>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Claim</th><th>More accurate version</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>“CLōD is only for local apps”</td>
+                <td>Best treated as <strong>local-first</strong>. Public serverless hosts often cannot call it reliably.</td>
+              </tr>
+              <tr>
+                <td>“Online AI needs a paid API”</td>
+                <td>Public AI usually needs a <strong>cloud API that servers can call</strong> (DeepSeek is a common low-cost example). Free tiers may exist elsewhere, but keys still must stay off the public HTML.</td>
+              </tr>
+              <tr>
+                <td>“AI can’t work on GitHub”</td>
+                <td><strong>GitHub Pages is static hosting</strong>: great for HTML/CSS/JS files, but no server-side functions to hide keys. You can call an API from the browser only if you expose a key (unsafe) or ask each user for their own key.</td>
+              </tr>
+              <tr>
+                <td>“Need Vercel”</td>
+                <td>Need <strong>some host with server/serverless functions</strong> (Vercel, Netlify, Cloudflare Workers, Render, …) to proxy AI requests safely. Vercel is one popular choice.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 38 Appendix B DeepSeek -->
+      <section class="scene" data-title="Appendix B DeepSeek Vercel">
+        <p class="kicker">Appendix B</p>
+        <h1>Public AI path (sketch)</h1>
+        <div class="grid-2">
+          <div class="card">
+            <h3>DeepSeek (example)</h3>
+            <ul>
+              <li>Cloud API suitable for server calls</li>
+              <li>Keep <code>DEEPSEEK_API_KEY</code> in host env vars</li>
+              <li>Set usage limits; public chat can be abused</li>
+            </ul>
+          </div>
+          <div class="card gold">
+            <h3>Vercel (example host)</h3>
+            <ul>
+              <li>Connect the GitHub repo</li>
+              <li>Add a serverless function e.g. <code>/api/chat</code></li>
+              <li>Front end talks to your function, not directly to the model with your key</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tip"><h3>Safety red line</h3><p>Never paste API keys into GitHub Pages HTML. Treat keys like passwords.</p></div>
+      </section>
+
+      <!-- 39 Resources -->
+      <section class="scene" data-title="Resources">
+        <p class="kicker">Links</p>
+        <h1>Quick links</h1>
+        <ul class="bulletList">
+          <li>These slides: <a href="https://kwtsang101016.github.io/activities/vibecoding2026/">kwtsang101016.github.io/activities/vibecoding2026</a></li>
+          <li>CodeBuddy IDE: <a href="https://www.codebuddy.ai/ide" target="_blank" rel="noopener">codebuddy.ai/ide</a></li>
+          <li>GitHub signup: <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a></li>
+          <li>CLōD (after class): <a href="https://app.clod.io" target="_blank" rel="noopener">app.clod.io</a></li>
+        </ul>
+      </section>
+
+      <!-- 40 Thank you -->
+      <section class="scene cover" data-title="Thanks">
+        <div class="coverInner">
+          <p class="kicker">Thank you</p>
+          <h1 class="coverTitle">Go build something small that works</h1>
+          <p class="lead">Prompt → check → publish. That is the whole game.</p>
+          <p class="hint">Questions welcome · submit your single index.html</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+  <script src="assets/lecture.js"></script>
+</body>
+</html>
